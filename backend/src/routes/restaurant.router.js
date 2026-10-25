@@ -4,8 +4,12 @@ import {
   deleteRestaurant,
   getHealth,
   getRestaurants,
+  getRestaurantStats,
   getSingleRestaurant,
   updateRestaurant,
+  getRestaurantCuisineStats,
+  getOpenCuisineStats,
+  getCuisineAverageRating,
 } from "../controllers/restaurant.controller.js";
 
 const router = Router();
@@ -17,6 +21,36 @@ const router = Router();
  */
 
 router.get("/health", getHealth);
+
+/**
+ * @GET /api/restaurants/stats
+ * @description get restaurant stats
+ * @returns {Object} - Returns a JSON object with the total number of restaurants and the average rating.
+ */
+
+router.get("/restaurants/stats", getRestaurantStats);
+
+/**
+ * @GET /api/restaurants/cuisine-stats
+ * @description get restaurant cuisine stats
+ * @returns {Object} - Returns a JSON object with the total number of restaurants for each cuisine type.
+ */
+
+router.get("/restaurants/cuisine-stats", getRestaurantCuisineStats);
+
+/**
+ * @GET /api/restaurants/open-cuisine-stats
+ * @description get open restaurant cuisine stats
+ * @returns {Object} - Returns a JSON object with the total number of open restaurants for each cuisine type.
+ */
+router.get("/restaurants/open-cuisine-stats", getOpenCuisineStats);
+
+/**
+ * @GET /api/restaurants/cuisine-average-ratings
+ * @description get average ratings for each cuisine type
+ * @returns {Object} - Returns a JSON object with the average rating for each cuisine type.
+ */
+router.get("/restaurants/cuisine-average-ratings", getCuisineAverageRating);
 
 /**
  * @POST /api/restaurants
