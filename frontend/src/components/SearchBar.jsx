@@ -1,6 +1,21 @@
 import "./SearchBar.css";
+import { useState, useEffect } from "react";
 
-function SearchBar() {
+function SearchBar({ selectedCuisine, setSelectedCuisine }) {
+  const [cuisines, setCuisines] = useState([]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/restaurants/cuisine-stats`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Cuisine stats:", data);
+        setCuisines(data.data.map((item) => item._id));
+      })
+      .catch((error) => console.error("Error fetching cuisine stats:", error));
+  }, []);
+
+  console.log("Cuisines:", cuisines);
+
   return (
     <div className="search-panel">
       <div className="search-field">
@@ -16,14 +31,18 @@ function SearchBar() {
       <div className="search-select">
         <span className="select-icon">♨</span>
 
-        <select defaultValue="">
+        <select
+          onChange={(e) => setSelectedCuisine(e.target.value)}
+          defaultValue=""
+        >
           <option value="" disabled>
             All Cuisines
           </option>
-          <option>Indian</option>
-          <option>Italian</option>
-          <option>Chinese</option>
-          <option>Japanese</option>
+          {cuisines.map((cuisine) => (
+            <option key={cuisine} value={cuisine}>
+              {cuisine}
+            </option>
+          ))}
         </select>
       </div>
 

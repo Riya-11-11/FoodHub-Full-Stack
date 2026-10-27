@@ -30,10 +30,7 @@ function Navbar() {
           ♡
         </button>
 
-        <button
-          className="navbar-profile"
-          aria-label="Profile"
-        >
+        <button className="navbar-profile" aria-label="Profile">
           ♙
         </button>
       </div>
