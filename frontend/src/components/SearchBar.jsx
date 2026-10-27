@@ -1,8 +1,9 @@
 import "./SearchBar.css";
 import { useState, useEffect } from "react";
 
-function SearchBar({ selectedCuisine, setSelectedCuisine }) {
+function SearchBar({ selectedCuisine, setSelectedCuisine, searchText, setSearchText }) {
   const [cuisines, setCuisines] = useState([]);
+ 
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/restaurants/cuisine-stats`)
@@ -14,7 +15,7 @@ function SearchBar({ selectedCuisine, setSelectedCuisine }) {
       .catch((error) => console.error("Error fetching cuisine stats:", error));
   }, []);
 
-  console.log("Cuisines:", cuisines);
+  
 
   return (
     <div className="search-panel">
@@ -25,6 +26,8 @@ function SearchBar({ selectedCuisine, setSelectedCuisine }) {
           type="text"
           placeholder="Search for restaurants..."
           aria-label="Search for restaurants"
+          value={searchText}
+          onChange={(e)=>setSearchText(e.target.value)}
         />
       </div>
 

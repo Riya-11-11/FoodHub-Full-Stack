@@ -1,7 +1,7 @@
 import SearchBar from "./SearchBar";
 import "./Hero.css";
 
-function Hero({ selectedCuisine, setSelectedCuisine }) {
+function Hero({ selectedCuisine, setSelectedCuisine, searchText, setSearchText }) {
   return (
     <section className="hero">
       <div className="hero-overlay"></div>
@@ -20,7 +20,7 @@ function Hero({ selectedCuisine, setSelectedCuisine }) {
           perfect place to satisfy your cravings.
         </p>
 
-        <SearchBar selectedCuisine={selectedCuisine} setSelectedCuisine={setSelectedCuisine}/>
+        <SearchBar selectedCuisine={selectedCuisine} setSelectedCuisine={setSelectedCuisine} searchText={searchText} setSearchText={setSearchText}/>
       </div>
 
       <div className="hero-tagline">

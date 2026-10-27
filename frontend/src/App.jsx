@@ -9,12 +9,14 @@ import "./App.css";
 
 function App() {
   const [pageNumber, setPageNumber] = useState(1);
-  const [selectedCuisine, setSelectedCuisine] = useState("");;
+  const [selectedCuisine, setSelectedCuisine] = useState("");
+
+   const[searchText, setSearchText] = useState("");
   return (
     <div className="foodhub">
       <Navbar />
-      <Hero selectedCuisine={selectedCuisine} setSelectedCuisine={setSelectedCuisine} />
-      <RestaurantList pageNumber={pageNumber} setPageNumber={setPageNumber} selectedCuisine={selectedCuisine} setSelectedCuisine={setSelectedCuisine} />
+      <Hero selectedCuisine={selectedCuisine} setSelectedCuisine={setSelectedCuisine} searchText={searchText} setSearchText={setSearchText} />
+      <RestaurantList pageNumber={pageNumber} selectedCuisine={selectedCuisine} searchText={searchText} />
       <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
       <Footer />
     </div>
