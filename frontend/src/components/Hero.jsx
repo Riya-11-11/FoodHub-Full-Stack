@@ -1,7 +1,22 @@
 import SearchBar from "./SearchBar";
 import "./Hero.css";
 
-function Hero({ selectedCuisine, setSelectedCuisine, searchText, setSearchText }) {
+function Hero({
+  selectedCuisine,
+  setSelectedCuisine,
+  searchText,
+  setSearchText,
+  selectedSort,
+  setSelectedSort,
+  appliedSearchText,
+  setAppliedSearchText,
+  appliedSelectedSort,
+  setAppliedSelectedSort,
+  appliedSelectedCuisine,
+  setAppliedSelectedCuisine,
+  pageNumber,
+  setPageNumber,
+}) {
   return (
     <section className="hero">
       <div className="hero-overlay"></div>
@@ -16,11 +31,26 @@ function Hero({ selectedCuisine, setSelectedCuisine, searchText, setSearchText }
         </h1>
 
         <p className="hero-description">
-          From local favorites to global cuisines, find the
-          perfect place to satisfy your cravings.
+          From local favorites to global cuisines, find the perfect place to
+          satisfy your cravings.
         </p>
 
-        <SearchBar selectedCuisine={selectedCuisine} setSelectedCuisine={setSelectedCuisine} searchText={searchText} setSearchText={setSearchText}/>
+        <SearchBar
+          selectedCuisine={selectedCuisine}
+          setSelectedCuisine={setSelectedCuisine}
+          searchText={searchText}
+          setSearchText={setSearchText}
+          selectedSort={selectedSort}
+          setSelectedSort={setSelectedSort}
+          appliedSearchText={appliedSearchText}
+          setAppliedSearchText={setAppliedSearchText}
+          appliedSelectedSort={appliedSelectedSort}
+          setAppliedSelectedSort={setAppliedSelectedSort}
+          appliedSelectedCuisine={appliedSelectedCuisine}
+          setAppliedSelectedCuisine={setAppliedSelectedCuisine}
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
       </div>
 
       <div className="hero-tagline">
@@ -28,7 +58,9 @@ function Hero({ selectedCuisine, setSelectedCuisine, searchText, setSearchText }
         <span>Food</span>
         <span>Brings</span>
         <span>People</span>
-        <span>Together <b>♡</b></span>
+        <span>
+          Together <b>♡</b>
+        </span>
       </div>
 
       <div className="hero-decoration"></div>

@@ -120,9 +120,11 @@ export async function getRestaurants(req, res) {
 
     // 9. Sorting apply karna
     if (sort === "rating") {
-      query = query.sort({ rating: -1, _id:1 });
+      query = query.sort({ rating: -1, _id: 1 });
     } else if (sort === "low") {
-      query = query.sort({ rating: 1, _id:1 });
+      query = query.sort({ rating: 1, _id: 1 });
+    } else if (sort === "name") {
+      query = query.sort({ name: 1, _id: 1 });
     }
 
     // 10. Database se restaurants fetch karna

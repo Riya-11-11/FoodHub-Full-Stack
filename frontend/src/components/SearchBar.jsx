@@ -1,9 +1,23 @@
 import "./SearchBar.css";
 import { useState, useEffect } from "react";
 
-function SearchBar({ selectedCuisine, setSelectedCuisine, searchText, setSearchText }) {
+function SearchBar({
+  selectedCuisine,
+  setSelectedCuisine,
+  searchText,
+  setSearchText,
+  selectedSort,
+  setSelectedSort,
+  appliedSearchText,
+  setAppliedSearchText,
+  appliedSelectedSort,
+  setAppliedSelectedSort,
+  appliedSelectedCuisine,
+  setAppliedSelectedCuisine,
+  pageNumber,
+  setPageNumber,
+}) {
   const [cuisines, setCuisines] = useState([]);
- 
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/restaurants/cuisine-stats`)
@@ -15,7 +29,13 @@ function SearchBar({ selectedCuisine, setSelectedCuisine, searchText, setSearchT
       .catch((error) => console.error("Error fetching cuisine stats:", error));
   }, []);
 
-  
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setAppliedSearchText(searchText);
+    setAppliedSelectedCuisine(selectedCuisine);
+    setAppliedSelectedSort(selectedSort);
+    setPageNumber(1); // Reset to the first page on new search
+  };
 
   return (
     <div className="search-panel">
@@ -27,7 +47,7 @@ function SearchBar({ selectedCuisine, setSelectedCuisine, searchText, setSearchT
           placeholder="Search for restaurants..."
           aria-label="Search for restaurants"
           value={searchText}
-          onChange={(e)=>setSearchText(e.target.value)}
+          onChange={(e) => setSearchText(e.target.value)}
         />
       </div>
 
@@ -36,7 +56,7 @@ function SearchBar({ selectedCuisine, setSelectedCuisine, searchText, setSearchT
 
         <select
           onChange={(e) => setSelectedCuisine(e.target.value)}
-          defaultValue=""
+          value={selectedCuisine}
         >
           <option value="" disabled>
             All Cuisines
@@ -52,14 +72,17 @@ function SearchBar({ selectedCuisine, setSelectedCuisine, searchText, setSearchT
       <div className="search-select">
         <span className="select-icon">↕</span>
 
-        <select defaultValue="rating">
+        <select
+          value={selectedSort}
+          onChange={(e) => setSelectedSort(e.target.value)}
+        >
           <option value="rating">Sort by Rating</option>
           <option value="low">Lowest Rating</option>
           <option value="name">Name</option>
         </select>
       </div>
 
-      <button className="search-submit">
+      <button className="search-submit" onClick={handleSearchSubmit}>
         <span>⌕</span>
         Search
       </button>

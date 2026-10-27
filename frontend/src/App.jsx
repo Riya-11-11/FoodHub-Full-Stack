@@ -9,14 +9,44 @@ import "./App.css";
 
 function App() {
   const [pageNumber, setPageNumber] = useState(1);
-  const [selectedCuisine, setSelectedCuisine] = useState("");
 
-   const[searchText, setSearchText] = useState("");
+  const [selectedCuisine, setSelectedCuisine] = useState("");
+  const [appliedSelectedCuisine, setAppliedSelectedCuisine] = useState("");
+
+  const [searchText, setSearchText] = useState("");
+  const [appliedSearchText, setAppliedSearchText] = useState("");
+
+  const [selectedSort, setSelectedSort] = useState("rating");
+  const [appliedSelectedSort, setAppliedSelectedSort] = useState("rating");
+
   return (
     <div className="foodhub">
       <Navbar />
-      <Hero selectedCuisine={selectedCuisine} setSelectedCuisine={setSelectedCuisine} searchText={searchText} setSearchText={setSearchText} />
-      <RestaurantList pageNumber={pageNumber} selectedCuisine={selectedCuisine} searchText={searchText} />
+      <Hero
+        selectedCuisine={selectedCuisine}
+        setSelectedCuisine={setSelectedCuisine}
+        searchText={searchText}
+        setSearchText={setSearchText}
+        selectedSort={selectedSort}
+        setSelectedSort={setSelectedSort}
+        appliedSearchText={appliedSearchText}
+        setAppliedSearchText={setAppliedSearchText}
+        appliedSelectedCuisine={appliedSelectedCuisine}
+        setAppliedSelectedCuisine={setAppliedSelectedCuisine}
+        appliedSelectedSort={appliedSelectedSort}
+        setAppliedSelectedSort={setAppliedSelectedSort}
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+      />
+      <RestaurantList
+        pageNumber={pageNumber}
+        selectedCuisine={selectedCuisine}
+        searchText={searchText}
+        selectedSort={selectedSort}
+        appliedSelectedCuisine={appliedSelectedCuisine}
+        appliedSearchText={appliedSearchText}
+        appliedSelectedSort={appliedSelectedSort}
+      />
       <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
       <Footer />
     </div>

@@ -2,12 +2,20 @@ import RestaurantCard from "./RestaurantCard";
 import "./RestaurantList.css";
 import { useState, useEffect } from "react";
 
-function RestaurantList({ pageNumber, selectedCuisine, searchText }) {
+function RestaurantList({
+  pageNumber,
+  // selectedCuisine,
+  // searchText,
+  // selectedSort,
+  appliedSelectedCuisine,
+  appliedSearchText,
+  appliedSelectedSort,
+}) {
   const [restaurantsData, setRestaurantsData] = useState([]);
 
   useEffect(() => {
     fetch(
-      `${import.meta.env.VITE_API_URL}/api/restaurants?page=${pageNumber}&limit=10&cuisine=${selectedCuisine}&search=${searchText}`,
+      `${import.meta.env.VITE_API_URL}/api/restaurants?page=${pageNumber}&limit=10&cuisine=${appliedSelectedCuisine}&search=${appliedSearchText}&sort=${appliedSelectedSort}`,
     )
       .then((response) => response.json())
       .then((data) => {
@@ -17,7 +25,12 @@ function RestaurantList({ pageNumber, selectedCuisine, searchText }) {
         setRestaurantsData(data.data);
       })
       .catch((error) => console.error("Error fetching restaurants:", error));
-  }, [pageNumber, selectedCuisine, searchText]);
+  }, [
+    pageNumber,
+    appliedSelectedCuisine,
+    appliedSearchText,
+    appliedSelectedSort,
+  ]);
 
   return (
     <main className="restaurants-section" id="restaurants">
