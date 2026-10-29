@@ -10,10 +10,14 @@ function RestaurantList({
   appliedSelectedCuisine,
   appliedSearchText,
   appliedSelectedSort,
+  totalPages,
+  setTotalPages,
 }) {
   const [restaurantsData, setRestaurantsData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const [totalRestaurants, setTotalRestaurants] = useState(0); // State to hold the total number of restaurants
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +36,11 @@ function RestaurantList({
         console.log("Restaurants received:", data.data);
 
         setRestaurantsData(data.data);
+        setTotalPages(data.pagination.totalPages); // Update total pages from API response
+        setTotalRestaurants(data.pagination.totalRestaurants); // Update total restaurants from API response
+
+        console.log("Total pages:", data.pagination.totalPages);
+        console.log("Total restaurants:", data.pagination.totalRestaurants);
       })
       .catch((error) => {
         console.error("Error fetching restaurants:", error);
@@ -57,16 +66,29 @@ function RestaurantList({
           View All <span>→</span>
         </a>
       </div>
+      <div className="pagination-info">
+        {totalPages >= 1 && (
+          <h2 className="page-indicator">
+            Page {pageNumber} of {totalPages}
+          </h2>
+        )}
+      </div>
       {loading ? (
         <p>Loading restaurants...</p>
       ) : error ? (
         <p>Error fetching restaurants. Please try again later.</p>
       ) : restaurantsData.length > 0 ? (
-        <div className="restaurant-grid">
-          {restaurantsData.map((restaurant) => (
-            <RestaurantCard key={restaurant._id} restaurant={restaurant} />
-          ))}
-        </div>
+        <>
+          <h2 className="total-restaurants">
+            Total Restaurants: {totalRestaurants}
+          </h2>
+
+          <div className="restaurant-grid">
+            {restaurantsData.map((restaurant) => (
+              <RestaurantCard key={restaurant._id} restaurant={restaurant} />
+            ))}
+          </div>
+        </>
       ) : (
         <p>No restaurants found.</p>
       )}

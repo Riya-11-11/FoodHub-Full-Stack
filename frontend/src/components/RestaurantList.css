@@ -76,3 +76,55 @@
     grid-template-columns: 1fr;
   }
 }
+
+.pagination-info {
+display: flex;
+justify-content: flex-end;
+align-items: center;
+margin: 0 0 20px;
+}
+
+.page-indicator {
+display: inline-flex;
+align-items: center;
+margin: 0;
+padding: 9px 16px;
+background: #f8fafc;
+color: #475569;
+border: 1px solid #e2e8f0;
+border-radius: 10px;
+font-size: 0.9rem;
+font-weight: 600;
+letter-spacing: 0.3px;
+box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.page-indicator:hover {
+background: #fff7ed;
+border-color: #fed7aa;
+}
+
+
+.total-restaurants {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+margin: 0 0 24px;
+padding: 12px 20px;
+background: linear-gradient(135deg, #fff7ed, #ffedd5);
+color: #9a3412;
+border: 1px solid #fed7aa;
+border-radius: 12px;
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 0.3px;
+box-shadow: 0 4px 12px rgba(154, 52, 18, 0.08);
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.total-restaurants:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 16px rgba(154, 52, 18, 0.12);
+}
+

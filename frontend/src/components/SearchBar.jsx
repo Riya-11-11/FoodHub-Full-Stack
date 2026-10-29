@@ -35,11 +35,11 @@ function SearchBar({
     setAppliedSelectedCuisine(selectedCuisine);
     setAppliedSelectedSort(selectedSort);
     setPageNumber(1); // Reset to the first page on new search
-   
-  };
- setSearchText(""); // Clear the search input after submission
+    setSearchText(""); // Clear the search input after submission
     setSelectedCuisine(""); // Clear the cuisine selection after submission
     setSelectedSort("rating"); // Clear the sort selection after submission
+  };
+
   return (
     <div className="search-panel">
       <div className="search-field">

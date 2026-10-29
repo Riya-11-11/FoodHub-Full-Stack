@@ -19,6 +19,8 @@ function App() {
   const [selectedSort, setSelectedSort] = useState("rating");
   const [appliedSelectedSort, setAppliedSelectedSort] = useState("rating");
 
+  const [totalPages, setTotalPages] = useState(1); // State to hold the total number of pages
+
   return (
     <div className="foodhub">
       <Navbar />
@@ -40,14 +42,17 @@ function App() {
       />
       <RestaurantList
         pageNumber={pageNumber}
-        selectedCuisine={selectedCuisine}
-        searchText={searchText}
-        selectedSort={selectedSort}
         appliedSelectedCuisine={appliedSelectedCuisine}
         appliedSearchText={appliedSearchText}
         appliedSelectedSort={appliedSelectedSort}
+        setTotalPages={setTotalPages}
       />
-      <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
+
+      <Pagination
+        pageNumber={pageNumber}
+        setPageNumber={setPageNumber}
+        totalPages={totalPages}
+      />
       <Footer />
     </div>
   );
